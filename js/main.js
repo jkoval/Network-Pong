@@ -22,6 +22,9 @@ function init() {
 	width = canvas.width;
 	height = canvas.height;
 	
-	Graphics.drawRectangle(graphics, 50, 50, 100, 100, 'noFill', 2, 'green');
-	Graphics.drawRoundedRect(graphics, 200, 200, 50, 50, 5, 'yellow', 10, 'red');
+	Graphics.fill('green');
+	Graphics.strokeWeight(10);
+	Graphics.stroke('blue');
+	Graphics.drawRectangle(graphics, 50, 50, 100, 100);
+	Graphics.drawRoundedRect(graphics, 200, 200, 50, 50, 20);
 }
