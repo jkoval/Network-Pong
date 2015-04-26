@@ -7,11 +7,11 @@ var Graphics = function() {
 }
 
 // Static properties of Graphics
-Graphics.stroke = true;
+Graphics.isStroke = true;
 Graphics.strokeWeight = 1;
 Graphics.strokeColour = 'black';
 
-Graphics.fill = true;
+Graphics.isFill = true;
 Graphics.fillColour = 'red';
 
 // Static method for setting a stroke weight
@@ -21,24 +21,24 @@ Graphics.strokeWeight = function(weight) {
 
 // Static method for setting stroke colour
 Graphics.stroke = function(colour) {
-	Graphics.stroke = true;
+	Graphics.isStroke = true;
 	Graphics.strokeColour = colour;
 }
 
 // Static method for disabling stroke
 Graphics.noStroke = function() {
-	Graphics.stroke = false;
+	Graphics.isStroke = false;
 }
 
 // Static method for setting fill colour
 Graphics.fill = function(colour) {
 	Graphics.fillColour = colour;
-	Graphics.fill = true;
+	Graphics.isFill = true;
 }
 
 // Static method for disabling fill
 Graphics.noFill = function() {
-	Graphics.fill = false;
+	Graphics.isFill = false;
 }
 
 // Static method 
@@ -71,15 +71,37 @@ Graphics.drawRoundedRect = function(g, x, y, width, height, radius) {
 	g.closePath();
 	
 	
-	if (Graphics.stroke) {
+	if (Graphics.isStroke) {
 		g.lineWidth = Graphics.strokeWeight;
 		g.strokeStyle = Graphics.strokeColour;
 		g.stroke();
 	}
 	
-	if (Graphics.fill) {
+	if (Graphics.isFill) {
 		g.fillStyle = Graphics.fillColour;
 		g.fill();
 	}
+	
+}
+
+// Static method for drawing an ellipse
+Graphics.drawEllipse = function(g, x, y, radius) {
+	
+	g.beginPath();
+	
+	g.arc(x, y, radius, 0, 2 * Math.PI, false);
+	
+	if (Graphics.isStroke) {
+		g.lineWidth = Graphics.strokeWeight;
+		g.strokeStyle = Graphics.strokeColour;
+		g.stroke();
+	}
+	
+	if (Graphics.isFill) {
+		g.fillStyle = Graphics.fillColour;
+		g.fill();
+	}
+	
+	g.closePath();
 	
 }

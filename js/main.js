@@ -26,5 +26,10 @@ function init() {
 	Graphics.strokeWeight(10);
 	Graphics.stroke('blue');
 	Graphics.drawRectangle(graphics, 50, 50, 100, 100);
+	
+	Graphics.noStroke();
 	Graphics.drawRoundedRect(graphics, 200, 200, 50, 50, 20);
+
+	Graphics.stroke('blue');
+	Graphics.drawEllipse(graphics, 300, 300, 20);
 }
