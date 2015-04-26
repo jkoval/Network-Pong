@@ -7,6 +7,8 @@ var Graphics = function() {
 }
 
 // Static properties of Graphics
+Graphics.context = null;
+
 Graphics.isStroke = true;
 Graphics.strokeWeight = 1;
 Graphics.strokeColour = 'black';
@@ -41,7 +43,10 @@ Graphics.noFill = function() {
 	Graphics.isFill = false;
 }
 
-// Static method 
+// Static method for initialising graphics class
+Graphics.init = function(context) {
+	this.context = context;
+}
 
 // Static method for drawing a rectangle.
 // g = the graphic context of the canvas.
@@ -49,14 +54,16 @@ Graphics.noFill = function() {
 // y = y position of rectangle.
 // width = the x size of the rectangle.
 // height = the y size of the rectangle.
-Graphics.drawRectangle = function(g, x, y, width, height) {
+Graphics.drawRectangle = function(x, y, width, height) {
 
-	Graphics.drawRoundedRect(g, x, y, width, height, 0);
+	Graphics.drawRoundedRect(x, y, width, height, 0);
 }
 
 // Static method for drawing a rounded rectangle.
 // radius = the amount of rounding for the rectangle.
-Graphics.drawRoundedRect = function(g, x, y, width, height, radius) {
+Graphics.drawRoundedRect = function(x, y, width, height, radius) {
+	
+	var g = Graphics.context;
 	
 	g.beginPath();
 	g.moveTo(x + radius, y);
@@ -85,7 +92,9 @@ Graphics.drawRoundedRect = function(g, x, y, width, height, radius) {
 }
 
 // Static method for drawing an ellipse
-Graphics.drawEllipse = function(g, x, y, radius) {
+Graphics.drawEllipse = function(x, y, radius) {
+	
+	var g = Graphics.context;
 	
 	g.beginPath();
 	
@@ -100,6 +109,26 @@ Graphics.drawEllipse = function(g, x, y, radius) {
 	if (Graphics.isFill) {
 		g.fillStyle = Graphics.fillColour;
 		g.fill();
+	}
+	
+	g.closePath();
+	
+}
+
+// Static method for drawing a lineHeight
+Graphics.drawLine = function(x1, y1, x2, y2) {
+	
+	var g = Graphics.context;
+	
+	g.beginPath();
+	
+	g.moveTo(x1, y1);
+	g.lineTo(x2, y2);
+	
+	if (Graphics.isStroke) {
+		g.lineWidth = Graphics.strokeWeight;
+		g.strokeStyle = Graphics.strokeColour;
+		g.stroke();
 	}
 	
 	g.closePath();

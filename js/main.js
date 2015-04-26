@@ -18,6 +18,7 @@ function init() {
 	
 	canvas = document.getElementById('drawSurface');
 	graphics = canvas.getContext('2d');
+	Graphics.init(graphics);
 	
 	width = canvas.width;
 	height = canvas.height;
@@ -25,11 +26,14 @@ function init() {
 	Graphics.fill('green');
 	Graphics.strokeWeight(10);
 	Graphics.stroke('blue');
-	Graphics.drawRectangle(graphics, 50, 50, 100, 100);
+	Graphics.drawRectangle(50, 50, 100, 100);
 	
 	Graphics.noStroke();
-	Graphics.drawRoundedRect(graphics, 200, 200, 50, 50, 20);
+	Graphics.drawRoundedRect(200, 200, 50, 50, 20);
 
 	Graphics.stroke('blue');
-	Graphics.drawEllipse(graphics, 300, 300, 20);
+	Graphics.drawEllipse(300, 300, 20);
+	
+	Graphics.stroke('black');
+	Graphics.drawLine(10, 10, 10, 100);
 }
